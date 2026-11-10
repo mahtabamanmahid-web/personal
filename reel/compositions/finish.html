@@ -1,0 +1,19 @@
+<template>
+<style>
+#root{position:absolute;inset:0;pointer-events:none;}
+#fin-vig{position:absolute;inset:0;background:radial-gradient(110% 70% at 50% 45%,rgba(0,0,0,0) 55%,rgba(0,0,0,0.6) 100%);}
+#fin-leak{position:absolute;left:-300px;top:-200px;width:900px;height:900px;border-radius:50%;
+  background:radial-gradient(circle,rgba(255,170,80,0.22) 0%,rgba(255,120,40,0.08) 40%,rgba(255,120,40,0) 70%);}
+#fin-fade{position:absolute;inset:0;background:#000;}
+</style>
+<div id="root" data-composition-id="finish" data-width="1080" data-height="1920">
+<div id="fin-leak" data-layout-ignore></div><div id="fin-vig" data-layout-ignore></div><div id="fin-fade" data-layout-ignore></div>
+</div>
+<script>
+const tl = gsap.timeline({ paused: true });
+tl.fromTo("#fin-leak",{x:0,y:0,opacity:0.5},{x:700,y:1300,opacity:1,duration:84.0,ease:"none"},0);
+tl.fromTo("#fin-fade",{opacity:0},{opacity:0,duration:0.01},0);
+tl.to("#fin-fade",{opacity:1,duration:1.0,ease:"sine.in"},82.95);
+window.__timelines["finish"] = tl;
+</script>
+</template>
